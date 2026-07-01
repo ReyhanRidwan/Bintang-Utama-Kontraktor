@@ -10,6 +10,7 @@ export interface PortfolioItem {
   title: string;
   category: string;
   image: string;
+  aspect?: 'portrait' | 'landscape';
 }
 
 export interface TestimonialItem {

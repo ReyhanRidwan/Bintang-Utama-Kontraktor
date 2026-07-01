@@ -5,6 +5,7 @@ import { PORTFOLIO } from '../data';
 export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState<string>("Semua");
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [sliderPos, setSliderPos] = useState<number>(50);
 
   const categories = [
     "Semua",
@@ -64,6 +65,112 @@ export default function Portfolio() {
           </p>
         </div>
 
+        {/* Interactive Before/After Renovasi Slider Showcase */}
+        <div className="mb-20 bg-gray-50 border border-gray-150 rounded-3xl p-6 lg:p-10 shadow-md" id="portfolio-transformation-showcase">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            
+            {/* Slider Column */}
+            <div className="lg:col-span-7 flex flex-col items-center" id="before-after-slider-container">
+              <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9] rounded-2xl overflow-hidden shadow-xl border-4 border-[#16233A] select-none group">
+                
+                {/* AFTER IMAGE (Background) */}
+                <img 
+                  src="https://res.cloudinary.com/di6ziqvtp/image/upload/v1782909328/97550645-005d-4db1-84f1-71d77261f91f.png" 
+                  alt="Sesudah Renovasi" 
+                  className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
+                  referrerPolicy="no-referrer"
+                />
+                <span className="absolute bottom-4 right-4 bg-emerald-600 text-white font-mono text-[10px] font-bold uppercase tracking-widest px-2.5 py-1.5 rounded-lg z-20 shadow-md">
+                  Sesudah (Rumah Modern)
+                </span>
+
+                {/* BEFORE IMAGE (Clipped Layer - no CSS transition on clip-path so it tracks perfectly and buttery smooth) */}
+                <img 
+                  src="https://res.cloudinary.com/di6ziqvtp/image/upload/v1782909325/18b1c98a-e5a5-4fc4-8203-0caf6ceee27f.png" 
+                  alt="Sebelum Renovasi" 
+                  className="absolute inset-0 w-full h-full object-cover select-none pointer-events-none"
+                  style={{ clipPath: `inset(0 ${100 - sliderPos}% 0 0)` }}
+                  referrerPolicy="no-referrer"
+                />
+                <span className="absolute bottom-4 left-4 bg-amber-600 text-white font-mono text-[10px] font-bold uppercase tracking-widest px-2.5 py-1.5 rounded-lg z-20 shadow-md">
+                  Sebelum (Rumah Lama)
+                </span>
+
+                {/* Vertical Slider Line divider */}
+                <div 
+                  className="absolute inset-y-0 z-30 w-1 bg-white shadow-xl pointer-events-none"
+                  style={{ left: `${sliderPos}%` }}
+                >
+                  {/* Knob */}
+                  <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-[#16233A] border-4 border-white shadow-2xl flex items-center justify-center text-white cursor-ew-resize">
+                    <span className="text-[#C89A2B] font-extrabold text-base tracking-tighter">↔</span>
+                  </div>
+                </div>
+
+                {/* Drag Handle Layer - Invisible Input Slider overlay */}
+                <input 
+                  type="range" 
+                  min="0" 
+                  max="100" 
+                  value={sliderPos}
+                  onChange={(e) => setSliderPos(Number(e.target.value))}
+                  className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-40"
+                  aria-label="Geser untuk melihat perbedaan Sebelum dan Sesudah"
+                />
+              </div>
+              <p className="mt-4 font-mono text-[11px] text-gray-500 flex items-center gap-1.5 animate-pulse text-center">
+                <span>◀ GESER SLIDER DI ATAS UNTUK MEMBANDINGKAN SEBELUM & SESUDAH ▶</span>
+              </p>
+            </div>
+
+            {/* Description Column */}
+            <div className="lg:col-span-5 space-y-6" id="before-after-description">
+              <div className="space-y-2">
+                <span className="text-[#C89A2B] font-mono font-bold text-xs uppercase tracking-widest block">
+                  ✦ TRANSFORMASI KARYA NYATA
+                </span>
+                <h3 className="font-sans font-bold text-2xl sm:text-3xl text-[#16233A] uppercase tracking-tight leading-tight">
+                  RENOVASI RUMAH LAMA JADI RUMAH MODERN TROPIS
+                </h3>
+                <div className="h-1 w-16 bg-[#C89A2B] rounded-full" />
+              </div>
+
+              <p className="font-sans text-xs sm:text-sm text-gray-600 leading-relaxed">
+                Bukti keahlian tim konstruksi arsitektur kami dalam merombak total bangunan rumah lama menjadi sebuah <strong>hunian modern tropis</strong> yang estetik, hemat energi, berstruktur kokoh standar sipil, dan memiliki sirkulasi udara optimal.
+              </p>
+
+              <div className="grid grid-cols-2 gap-4" id="before-after-specs">
+                <div className="bg-white p-3.5 rounded-xl border border-gray-150">
+                  <span className="text-[10px] font-mono text-gray-400 block uppercase">Scope Pekerjaan</span>
+                  <span className="font-sans font-bold text-xs sm:text-sm text-[#16233A] uppercase">Renovasi Rumah Lama</span>
+                </div>
+                <div className="bg-white p-3.5 rounded-xl border border-gray-150">
+                  <span className="text-[10px] font-mono text-gray-400 block uppercase">Lokasi Proyek</span>
+                  <span className="font-sans font-bold text-xs sm:text-sm text-[#16233A] uppercase">Gubeng, Surabaya</span>
+                </div>
+                <div className="bg-white p-3.5 rounded-xl border border-gray-150">
+                  <span className="text-[10px] font-mono text-gray-400 block uppercase">Hasil Akhir</span>
+                  <span className="font-sans font-bold text-xs sm:text-sm text-[#16233A] uppercase">Rumah Modern Tropis</span>
+                </div>
+                <div className="bg-white p-3.5 rounded-xl border border-gray-150">
+                  <span className="text-[10px] font-mono text-gray-400 block uppercase">Sertifikat Mutu</span>
+                  <span className="font-sans font-bold text-xs sm:text-sm text-emerald-600 uppercase">Garansi 10 Tahun</span>
+                </div>
+              </div>
+
+              <div className="pt-2">
+                <a 
+                  href="#survey-form-section" 
+                  className="inline-flex items-center justify-center bg-[#16233A] hover:bg-[#233554] text-white px-5 py-3 rounded-xl font-sans font-bold text-xs uppercase tracking-wider transition-colors shadow-sm"
+                >
+                  Konsultasikan Renovasi Anda →
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
         {/* Category Tabs */}
         <div className="flex flex-wrap justify-center gap-2 mb-12" id="portfolio-category-tabs">
           {categories.map((cat, idx) => (
@@ -94,8 +201,8 @@ export default function Portfolio() {
               onClick={() => openLightbox(index)}
               className="group relative bg-gray-50 rounded-2xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-100"
             >
-              {/* Aspect-ratio forced wrapper */}
-              <div className="relative aspect-4/3 w-full overflow-hidden">
+              {/* Aspect-ratio forced wrapper (Respects portrait property) */}
+              <div className={`relative w-full overflow-hidden ${item.aspect === 'portrait' ? 'aspect-[3/4]' : 'aspect-4/3'}`}>
                 <img
                   src={item.image}
                   alt={item.title}

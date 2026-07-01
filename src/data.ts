@@ -185,6 +185,27 @@ export const PORTFOLIO: PortfolioItem[] = [
     title: "Ruang Kolaborasi & Desain Studio - Bintang Utama",
     category: "Kantor",
     image: "/assets/images/tim_arsitek_1782564178289.jpg"
+  },
+  {
+    id: "p9",
+    title: "Pembangunan Rumah Tinggal 2 Lantai Mewah Klasik Modern - Sidoarjo",
+    category: "Rumah 2 Lantai",
+    image: "https://res.cloudinary.com/di6ziqvtp/image/upload/v1782909453/a1fca787-19c4-44e7-968c-98726792894d.png",
+    aspect: "portrait"
+  },
+  {
+    id: "p10",
+    title: "Konstruksi Rumah 2 Lantai Estetik Tropis - Wonorejo, Surabaya",
+    category: "Rumah 2 Lantai",
+    image: "https://res.cloudinary.com/di6ziqvtp/image/upload/v1782909396/67db7dab-7ff7-42ae-a244-43c0cd8333de.png",
+    aspect: "portrait"
+  },
+  {
+    id: "p11",
+    title: "Proyek Rumah Minimalis 2 Lantai Lantai Granit - Keputih, Surabaya",
+    category: "Rumah 2 Lantai",
+    image: "https://res.cloudinary.com/di6ziqvtp/image/upload/v1782909362/dc63d30f-06c1-4c4c-b28c-2e73db3a7235.png",
+    aspect: "portrait"
   }
 ];
 
